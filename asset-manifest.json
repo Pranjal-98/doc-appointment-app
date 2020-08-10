@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/doctor-appointment-app/static/css/main.c20f2454.chunk.css",
+    "main.js": "/doctor-appointment-app/static/js/main.ddda1ed0.chunk.js",
+    "main.js.map": "/doctor-appointment-app/static/js/main.ddda1ed0.chunk.js.map",
+    "runtime-main.js": "/doctor-appointment-app/static/js/runtime-main.1be49a47.js",
+    "runtime-main.js.map": "/doctor-appointment-app/static/js/runtime-main.1be49a47.js.map",
+    "static/css/2.d34346ea.chunk.css": "/doctor-appointment-app/static/css/2.d34346ea.chunk.css",
+    "static/js/2.75ba366f.chunk.js": "/doctor-appointment-app/static/js/2.75ba366f.chunk.js",
+    "static/js/2.75ba366f.chunk.js.map": "/doctor-appointment-app/static/js/2.75ba366f.chunk.js.map",
+    "index.html": "/doctor-appointment-app/index.html",
+    "precache-manifest.799e50d4c3ae8e499a18ab709832b80a.js": "/doctor-appointment-app/precache-manifest.799e50d4c3ae8e499a18ab709832b80a.js",
+    "service-worker.js": "/doctor-appointment-app/service-worker.js",
+    "static/css/2.d34346ea.chunk.css.map": "/doctor-appointment-app/static/css/2.d34346ea.chunk.css.map",
+    "static/css/main.c20f2454.chunk.css.map": "/doctor-appointment-app/static/css/main.c20f2454.chunk.css.map",
+    "static/js/2.75ba366f.chunk.js.LICENSE.txt": "/doctor-appointment-app/static/js/2.75ba366f.chunk.js.LICENSE.txt",
+    "static/media/doctor.jpg": "/doctor-appointment-app/static/media/doctor.2f6b841c.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1be49a47.js",
+    "static/css/2.d34346ea.chunk.css",
+    "static/js/2.75ba366f.chunk.js",
+    "static/css/main.c20f2454.chunk.css",
+    "static/js/main.ddda1ed0.chunk.js"
+  ]
+}
