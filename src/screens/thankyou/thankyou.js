@@ -5,8 +5,9 @@ import "./thankyou.css";
 
 const ThankYou = () => {
   var slotItems = JSON.parse(localStorage.getItem("bookedSlots"));
-  var date = slotItems[slotItems.length - 1].date;
-  var time = slotItems[slotItems.length - 1].time;
+  console.log("Here in thank you screen", slotItems.items[0]);
+  var date = slotItems.items[slotItems.items.length - 1].date;
+  var time = slotItems.items[slotItems.items.length - 1].time;
 
   let history = useHistory();
   function handleClick() {

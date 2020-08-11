@@ -1,11 +1,10 @@
 import React from "react";
-import "/Users/pranjal/Sites/Projects/doctors-appointment/src/App.css";
-import Box from "@material-ui/core/Box";
-import { Button } from "@material-ui/core";
+import { Button, Box } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import DoctorDetails from "../doctordetails/Doctordetails";
+import SlotSelection from "../../components/datePicker";
 import "./selectDate.css";
-import SlotSelection from "/Users/pranjal/Sites/Projects/doctors-appointment/src/components/datePicker";
+import "../../App.css";
 
 function SelectDate() {
   let history = useHistory();
@@ -16,7 +15,7 @@ function SelectDate() {
     <Box className=" date-selection-screen" borderRadius={4} boxShadow={2}>
       <Box className="book-date" borderRadius={4} boxShadow={2}>
         <Button
-          className="back-button"
+          id="back-button"
           color="secondary"
           variant="outlined"
           onClick={handleClick}

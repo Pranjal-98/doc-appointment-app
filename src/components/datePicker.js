@@ -1,17 +1,10 @@
 import React, { useState } from "react";
 import DateFnsUtils from "@date-io/date-fns";
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
-import Box from "@material-ui/core/Box";
+import {InputLabel, MenuItem, FormControl, Select, Box} from "@material-ui/core";
 import { timeslots, weekendTimeslots } from "../const";
 import "./datePicker.css";
 import PatientDetailsForm from "./formValidation";
-import { setDate } from "date-fns";
-import { colors } from "@material-ui/core";
-import { red, green } from "@material-ui/core/colors";
 
 function disableSunday(date) {
   return date.getDay() === 0;
@@ -36,7 +29,7 @@ function DateTimePicker() {
 
     var bookedSlots = JSON.parse(localStorage.getItem("bookedSlots"));
 
-    bookedSlots.map((item) => {
+    bookedSlots.items.map((item) => {
       if (item.date === date) {
         bookedTime.push(item.time);
       }
@@ -66,6 +59,7 @@ function DateTimePicker() {
             <InputLabel id="simple-input-label">Select Time</InputLabel>
             <Select
               id="simple-select-label"
+              style={{ width: "100px" }}
               value={selectedTime}
               onChange={(e) => {
                 handleTimeChange(e.target.value);

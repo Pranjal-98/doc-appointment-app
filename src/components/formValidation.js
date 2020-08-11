@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import Button from "@material-ui/core/Button";
+import { Button, Box } from "@material-ui/core";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { withRouter } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./formValidation.css";
 
@@ -53,10 +52,11 @@ class PatientDetailsForm extends Component {
       // toast("Slot already booked!! Please book again.");
       console.log("bnb");
     } else {
-      slotItems.push({
+      slotItems.items.push({
         date: date,
         time: this.props.slotTime,
       });
+
       localStorage.setItem("bookedSlots", JSON.stringify(slotItems));
       this.props.history.push("/thankyou");
     }
@@ -82,49 +82,63 @@ class PatientDetailsForm extends Component {
         ref="form"
         onSubmit={this.handleSubmit}
       >
-        {/* <ToastContainer type="warning"></ToastContainer> */}
-        <TextValidator
-          label="Name"
-          variant="outlined"
-          onChange={this.handleChange}
-          name="name"
-          className="form-content"
-          value={formData.name}
-          validators={["required"]}
-          errorMessages={["this field is required"]}
-        />
+        <Box className="field-container">
+          <TextValidator
+            className="form-element"
+            fullWidth={true}
+            label="Name"
+            variant="outlined"
+            onChange={this.handleChange}
+            name="name"
+            value={formData.name}
+            validators={["required"]}
+            errorMessages={["this field is required"]}
+          />
+        </Box>
+
         <br />
-        <TextValidator
-          label="Email"
-          variant="outlined"
-          onChange={this.handleChange}
-          className="form-content"
-          name="email"
-          value={formData.email}
-          validators={["required"]}
-          errorMessages={["this field is required", "email is not valid"]}
-        />
+        <Box className="field-container">
+          <TextValidator
+            fullWidth={true}
+            className="form-element"
+            label="Email"
+            variant="outlined"
+            onChange={this.handleChange}
+            name="email"
+            value={formData.email}
+            validators={["required"]}
+            errorMessages={["this field is required", "email is not valid"]}
+          />
+        </Box>
+
         <br />
-        <TextValidator
-          label="Phone number"
-          variant="outlined"
-          onChange={this.handleChange}
-          className="form-content"
-          name="phoneno"
-          value={formData.phoneno}
-          validators={["required"]}
-          errorMessages={["this field is required"]}
-        />
+        <Box className="field-container">
+          <TextValidator
+            fullWidth={true}
+            className="form-element"
+            label="Phone number"
+            variant="outlined"
+            onChange={this.handleChange}
+            name="phoneno"
+            value={formData.phoneno}
+            validators={["required"]}
+            errorMessages={["this field is required"]}
+          />
+        </Box>
+
         <br />
-        <Button
-          color="secondary"
-          variant="outlined"
-          type="submit"
-          disabled={submitted}
-          onClick={this.handleClick}
-        >
-          {(submitted && "Thank you") || (!submitted && "Submit")}
-        </Button>
+        <Box id="button-container">
+          <Button
+            id="submit-button"
+            color="secondary"
+            variant="outlined"
+            type="submit"
+            disabled={submitted}
+            onClick={this.handleClick}
+          >
+            {(submitted && "Thank you") || (!submitted && "Submit")}
+          </Button>
+        </Box>
       </ValidatorForm>
     );
   }

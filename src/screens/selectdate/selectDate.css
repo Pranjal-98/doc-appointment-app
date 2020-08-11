@@ -1,17 +1,17 @@
 .book-date {
+  width: 40%;
   float: left;
-  padding: 50px;
-  display: block;
-  height: 65.5vh;
-  width: 35%;
 }
 .date-selection-screen {
-  height: 80vh;
+  height: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .book-slot {
-  padding: 40px;
-  border-right-width: 0px;
-  width: 100%;
-  margin-left: 10%;
+  width: 60%;
+  display: flex;
+}
+#back-button {
+  margin: 10%;
 }

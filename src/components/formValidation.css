@@ -1,4 +1,18 @@
-.form-content{
-    width: 60%;
-    
+.form-content {
+  width: 80%;
 }
+#button-container{
+    display: flex;
+    justify-content: center;
+}
+/* .form-element {
+  width: 100%;
+}  */
+/* .field-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+} */
+/* #submit-button{
+    /* margin-left: 30%; 
+} */
