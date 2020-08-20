@@ -16,6 +16,9 @@
   color: #3096e9;
   margin: 1%;
 }
+.button-container{
+  margin: 2%;
+}
 #doctor-contact {
   width: 100%;
 }

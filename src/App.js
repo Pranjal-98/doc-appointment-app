@@ -6,6 +6,7 @@ import "./App.css";
 import DoctorDetails from "./screens/doctordetails/Doctordetails"; //BACK BUTTON Component
 import SlotSelection from "./screens/selectdate/selectDate"; // BOOK APPOINTMENT Component
 import FinalScreen from "./screens/thankyou/thankyou"; //  THANK YOU Component
+import DoctorLogin from "./screens/doctorlogin/doctorLogin"; // DOCTOR LOGIN Component
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <Box className="App-intro">
           <Route path="/bookslot" component={SlotSelection} />
           <Route path="/thankyou" component={FinalScreen} />
+          <Route path="/doctorlogin" component={DoctorLogin}/>
           <Route
             path="/"
             exact

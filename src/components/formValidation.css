@@ -1,18 +1,10 @@
 .form-content {
   width: 80%;
 }
-#button-container{
-    display: flex;
-    justify-content: center;
+#button-container {
+  display: flex;
+  justify-content: left;
 }
-/* .form-element {
-  width: 100%;
-}  */
-/* .field-container{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-} */
-/* #submit-button{
-    /* margin-left: 30%; 
-} */
+#submit-button {
+  width: 25%;
+}

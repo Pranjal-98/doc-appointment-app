@@ -1,52 +1,70 @@
 import React, { useState } from "react";
 import DateFnsUtils from "@date-io/date-fns";
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
-import {InputLabel, MenuItem, FormControl, Select, Box} from "@material-ui/core";
+import { Box, Button } from "@material-ui/core";
 import { timeslots, weekendTimeslots } from "../const";
 import "./datePicker.css";
 import PatientDetailsForm from "./formValidation";
+import db from "../index";
 
 function disableSunday(date) {
   return date.getDay() === 0;
 }
-var bookedTime = [];
+var slotsOfTheDay = [];
 
 function DateTimePicker() {
   const [selectedDate, handleDateChange] = useState(new Date());
   const [selectedTime, handleTimeChange] = useState("09:00");
-  console.log(
-    "In date Picker;",
-    JSON.parse(localStorage.getItem("bookedSlots"))
-  );
+  const [bookedTime, setBookedTime] = useState([]);
 
+  var slotsOfTheDay = [...bookedTime];
+  function setSlot(value) {
+    handleTimeChange(value);
+  }
   function setDate(e) {
     handleDateChange(e);
+    handleTimeChange("09:00");
     var year = e.getFullYear();
     var month = e.getMonth() + 1;
     var day = e.getDate();
     var date = day + "-" + month + "-" + year;
-    console.log("Date is:", date);
 
-    var bookedSlots = JSON.parse(localStorage.getItem("bookedSlots"));
+    // var bookedSlots = JSON.parse(localStorage.getItem("bookedSlots"));
+    var bookedSlotsInFS = [];
+    db.collection("bookedSlots")
+      .get()
+      .then((querySnapshot) => {
+        const data = querySnapshot.docs.map((doc) => doc.data());
+        bookedSlotsInFS = [...data];
+        bookedSlotsInFS.map((item) => {
+          if (item.date === date) {
+            if (bookedTime.includes(item.time)) {
+              console.log("Already present");
+            } else {
+              slotsOfTheDay.push(item.time);
+            }
+          }
+        });
+        setBookedTime(bookedTime=> slotsOfTheDay);
+        console.log("Booked Time are:", slotsOfTheDay, "for date:", date);
+      });
 
-    bookedSlots.items.map((item) => {
-      if (item.date === date) {
-        bookedTime.push(item.time);
-      }
-    });
-    console.log("Booked Time are:", bookedTime, "for date:", date);
   }
   return (
     <Box className="patient-details-and-slot-booking">
       <Box className="text-select-date">
         <Box className="date-time-booking"> Select a Date & Time</Box>
         <Box className="date-time-booking">
+          <Box className= "calendar">
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <DatePicker
+              style= {{display: "flex", overflow: "scroll", minWidth: "auto"}}
+              autoOk
               label="Select Date"
               id="simple-date-picker-label"
+              variant="static"
+              openTo="date"
               value={selectedDate}
-              // onChange={handleDateChange}
               onChange={(e) => {
                 setDate(e);
               }}
@@ -54,40 +72,70 @@ function DateTimePicker() {
               shouldDisableDate={disableSunday}
             />
           </MuiPickersUtilsProvider>
+          </Box>
 
-          <FormControl>
-            <InputLabel id="simple-input-label">Select Time</InputLabel>
-            <Select
-              id="simple-select-label"
-              style={{ width: "100px" }}
-              value={selectedTime}
-              onChange={(e) => {
-                handleTimeChange(e.target.value);
-              }}
-            >
-              {selectedDate.getDay() === 6
-                ? weekendTimeslots.map((item) => {
-                    return (
-                      <MenuItem
-                        disabled={bookedTime.includes(item)}
-                        value={item}
-                      >
-                        {item}
-                      </MenuItem>
-                    );
-                  })
-                : timeslots.map((item) => {
-                    return (
-                      <MenuItem
-                        disabled={bookedTime.includes(item)}
-                        value={item}
-                      >
-                        {item}
-                      </MenuItem>
-                    );
-                  })}
-            </Select>
-          </FormControl>
+          <Box className=" slot-buttons-container">
+            {selectedDate.getDay() === 6
+              ? weekendTimeslots.map((item) => {
+                  return slotsOfTheDay.includes(item) ? (
+                    <Button
+                      className="button-container"
+                      style={{ margin: "5%", padding: "3%" }}
+                      color="secondary"
+                      variant="outlined"
+                      size="large"
+                      disabled={slotsOfTheDay.includes(item)}
+                      value={item}
+                    >
+                      {item}
+                    </Button>
+                  ) : (
+                    <Button
+                      className="button-container"
+                      style={{ margin: "5%", padding: "3%" }}
+                      color="secondary"
+                      variant={selectedTime === item ? "contained" : "outlined"}
+                      size="large"
+                      value={item}
+                      onClick={() => {
+                        setSlot(item);
+                      }}
+                    >
+                      {item}
+                    </Button>
+                  );
+                })
+              : timeslots.map((item) => {
+                  return slotsOfTheDay.includes(item) ? (
+                    <Button
+                      className="button-container"
+                      style={{ margin: "5%", padding: "3%" }}
+                      color="secondary"
+                      variant="outlined"
+                      size="large"
+                      disabled={slotsOfTheDay.includes(item)}
+                      value={item}
+                    >
+                      {item}
+                    </Button>
+                  ) : (
+                    <Button
+                      className="button-container"
+                      style={{ margin: "5%", padding: "3%" }}
+                      color="secondary"
+                      variant={selectedTime === item ? "contained" : "outlined"}
+                      size="large"
+                      value={item}
+                      onClick={() => {
+                        setSlot(item);
+                      }}
+                    >
+                      {item}
+                    </Button>
+                  );
+                })}
+            {(slotsOfTheDay = [])}
+          </Box>
         </Box>
       </Box>
 

@@ -4,6 +4,8 @@ import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { withRouter } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import "./formValidation.css";
+import db from "../index";
+import * as firebase from "firebase";
 
 class PatientDetailsForm extends Component {
   constructor(props) {
@@ -26,38 +28,56 @@ class PatientDetailsForm extends Component {
     var date = day + "-" + month + "-" + year;
 
     // Store the slots in local storage.
-    var slotItems = JSON.parse(localStorage.getItem("bookedSlots")) || [];
+    var slot_booked_latest =
+      JSON.parse(localStorage.getItem("slot_booked")) || [];
 
     var results = [];
     var final_results = [];
     var toSearchDate = date;
     var toSearchTime = this.props.slotTime;
 
-    for (var i = 0; i < slotItems.length; i++) {
-      for (var key in slotItems[i]) {
-        if (slotItems[i][key].indexOf(toSearchDate) != -1) {
-          results.push(slotItems[i]);
+    db.collection("bookedSlots")
+      .get()
+      .then((querySnapshot) => {
+        const data = querySnapshot.docs.map((doc) => doc.data());
+
+        for (var i = 0; i < data.length; i++) {
+          for (var key in data[i]) {
+            if (data[i][key].indexOf(toSearchDate) != -1) {
+              results.push(data[i]);
+            }
+          }
         }
-      }
-    }
-    for (var i = 0; i < results.length; i++) {
-      for (var key in results[i]) {
-        if (results[i][key].indexOf(toSearchTime) != -1) {
-          final_results.push(results[i]);
+        for (var i = 0; i < results.length; i++) {
+          for (var key in results[i]) {
+            if (results[i][key].indexOf(toSearchTime) != -1) {
+              final_results.push(results[i]);
+            }
+          }
         }
-      }
-    }
-    console.log("Final results:", final_results);
-    if (final_results.length > 0) {
-      // toast("Slot already booked!! Please book again.");
-      console.log("bnb");
+        slot_booked_latest.push(final_results);
+        localStorage.setItem("slot_booked", JSON.stringify(slot_booked_latest));
+        console.log(
+          "Final results:::",
+          final_results.length,
+          final_results[0].date
+        );
+      });
+
+    if (final_results.length > 1) {
+      console.log("slot repeated");
     } else {
-      slotItems.items.push({
+      db.collection("bookedSlots").add({
         date: date,
         time: this.props.slotTime,
       });
+      // slotItems.items.push({
+      //   date: date,
+      //   time: this.props.slotTime,
+      // });
 
-      localStorage.setItem("bookedSlots", JSON.stringify(slotItems));
+      // localStorage.setItem("bookedSlots", JSON.stringify(slotItems));
+
       this.props.history.push("/thankyou");
     }
   };
@@ -85,6 +105,7 @@ class PatientDetailsForm extends Component {
         <Box className="field-container">
           <TextValidator
             className="form-element"
+            size="small"
             fullWidth={true}
             label="Name"
             variant="outlined"
@@ -101,6 +122,7 @@ class PatientDetailsForm extends Component {
           <TextValidator
             fullWidth={true}
             className="form-element"
+            size="small"
             label="Email"
             variant="outlined"
             onChange={this.handleChange}
@@ -116,6 +138,7 @@ class PatientDetailsForm extends Component {
           <TextValidator
             fullWidth={true}
             className="form-element"
+            size="small"
             label="Phone number"
             variant="outlined"
             onChange={this.handleChange}
@@ -131,6 +154,7 @@ class PatientDetailsForm extends Component {
           <Button
             id="submit-button"
             color="secondary"
+            size="small"
             variant="outlined"
             type="submit"
             disabled={submitted}
