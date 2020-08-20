@@ -1,13 +1,14 @@
 .slots-details{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     text-align: center;
+    overflow-x: scroll;
 }
 .time-slots-of-each-day{
     display: flex;
     flex-direction: column ;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 18px;
     line-height: 1.5;
     font-weight: bold;
@@ -20,6 +21,7 @@
     display: flex;
     flex-direction: row;
     color: #3096e9;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     font-size: 14px;
     text-align: center;   
 }
