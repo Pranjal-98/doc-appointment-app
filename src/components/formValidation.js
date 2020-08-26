@@ -3,8 +3,8 @@ import { Button, Box } from "@material-ui/core";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { withRouter } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
+import moment from 'moment-timezone';
 import "./formValidation.css";
-import db from "../index";
 import * as firebase from "firebase";
 
 class PatientDetailsForm extends Component {
@@ -21,26 +21,39 @@ class PatientDetailsForm extends Component {
     };
   }
 
-  handleClick = () => {
+
+  handleChange = (event) => {
+    const { formData } = this.state;
+    formData[event.target.name] = event.target.value;
+    this.setState({ formData });
+  };
+
+  handleSubmit = () => {
+    this.setState({ submitted: true }, () => {
+      setTimeout(() => this.setState({ submitted: false }), 5000);
+    });
     var year = this.props.slotDate.getFullYear();
     var month = this.props.slotDate.getMonth() + 1;
     var day = this.props.slotDate.getDate();
-    var date = day + "-" + month + "-" + year;
+    var date = moment(this.props.slotDate).format('YYYY-MM-DD');
+    console.log("DATE IN FORM VALIDATION:***", this.props.slotDate, date);
 
     // Store the slots in local storage.
-    var slot_booked_latest =
-      JSON.parse(localStorage.getItem("slot_booked")) || [];
+    var slot_booked_latest = JSON.parse(localStorage.getItem("slot_booked")) || [];
 
     var results = [];
     var final_results = [];
     var toSearchDate = date;
     var toSearchTime = this.props.slotTime;
-
+    
+    var db = firebase.firestore();
     db.collection("bookedSlots")
       .get()
       .then((querySnapshot) => {
+        
         const data = querySnapshot.docs.map((doc) => doc.data());
-
+        
+        
         for (var i = 0; i < data.length; i++) {
           for (var key in data[i]) {
             if (data[i][key].indexOf(toSearchDate) != -1) {
@@ -55,42 +68,39 @@ class PatientDetailsForm extends Component {
             }
           }
         }
-        slot_booked_latest.push(final_results);
-        localStorage.setItem("slot_booked", JSON.stringify(slot_booked_latest));
+
+        console.log(">>>>>>>>>>", this.state.formData.name, this.state.formData.email, this.state.formData.phoneno);
         console.log(
-          "Final results:::",
-          final_results.length,
+          "Final results ***",
+          final_results,
           final_results[0].date
         );
-      });
+      })
 
     if (final_results.length > 1) {
       console.log("slot repeated");
     } else {
+      console.log("DATE BEFORE ADDING IN FIRESTORE: ***", date);
       db.collection("bookedSlots").add({
         date: date,
         time: this.props.slotTime,
+        name: this.state.formData.name,
+        email: this.state.formData.email,
+        phoneno: this.state.formData.phoneno,
       });
-      // slotItems.items.push({
-      //   date: date,
-      //   time: this.props.slotTime,
-      // });
+      slot_booked_latest.push({
+        date: date,
+        time: this.props.slotTime,
+        name: this.state.formData.name,
+        email: this.state.formData.email,
+        phoneno: this.state.formData.phoneno,
+      });
 
-      // localStorage.setItem("bookedSlots", JSON.stringify(slotItems));
-
+      localStorage.setItem("slot_booked", JSON.stringify(slot_booked_latest));
+      console.log("HELOOOOOO");
+      console.log("LOCAL STORAGE:", JSON.parse(localStorage.getItem("slot_booked")), slot_booked_latest);
       this.props.history.push("/thankyou");
     }
-  };
-  handleChange = (event) => {
-    const { formData } = this.state;
-    formData[event.target.name] = event.target.value;
-    this.setState({ formData });
-  };
-
-  handleSubmit = () => {
-    this.setState({ submitted: true }, () => {
-      setTimeout(() => this.setState({ submitted: false }), 5000);
-    });
   };
 
   render() {
@@ -155,10 +165,10 @@ class PatientDetailsForm extends Component {
             id="submit-button"
             color="secondary"
             size="small"
-            variant="outlined"
+            variant="contained"
             type="submit"
             disabled={submitted}
-            onClick={this.handleClick}
+            
           >
             {(submitted && "Thank you") || (!submitted && "Submit")}
           </Button>

@@ -10,10 +10,10 @@ function DoctorDetails({ showButton }) {
     history.push("/bookslot");
   }
   function handleClickByDoctor() {
-    history.push("/doctorlogin");
+    history.push("/login-as-doctor");
   }
   return (
-    <Box className="doctor-details">
+    <Box className="doctor-details" borderRadius={4} boxShadow={showButton ? 10 : 0} >
       <Box className="doctor_img">
         <img
           src={require("/Users/pranjal/Sites/Projects/doctors-appointment/src/Assets/doctor.jpg")}
@@ -31,8 +31,8 @@ function DoctorDetails({ showButton }) {
         <Button
           className="button-container"
           color="secondary"
-          style={{margin: "1%"}}
-          variant="outlined"
+          style={{margin: "1%", width:'30%'}}
+          variant="contained"
           size="medium"
           onClick={handleClickByDoctor}
         >
@@ -45,7 +45,9 @@ function DoctorDetails({ showButton }) {
         <Button
           className="button-container"
           color="secondary"
-          variant="outlined"
+          style={{margin: "1%", width:'30%'}}
+          
+          variant="contained"
           size="medium"
           onClick={handleClick}
         >

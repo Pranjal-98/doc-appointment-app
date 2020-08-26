@@ -8,8 +8,8 @@
   color: #f7407d;
 }
 .description-of-meeting {
-  width: 100%;
-  height: 80vh;
+  width: 50%;
+  height: 50vh;
   font-weight: bold;
   color: #3096e9;
   text-align: center;
@@ -17,4 +17,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: white;
 }
+

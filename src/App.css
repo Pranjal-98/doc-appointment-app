@@ -1,5 +1,11 @@
 .App {
   text-align: center;
+  /* background-color:#bed6e9; */
+  background-image: url('https://arsmke.com/wp-content/uploads/2018/03/Doctor-Background.jpg');
+  height:100vh;
+  background-repeat: no-repeat;
+  background-size:'contain';
+  overflow:scroll;
 }
 
 .App-logo {

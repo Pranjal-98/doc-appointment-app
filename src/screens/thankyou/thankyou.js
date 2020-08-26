@@ -6,17 +6,17 @@ import "./thankyou.css";
 const ThankYou = () => {
 
   var slot_booked_latest = JSON.parse(localStorage.getItem("slot_booked")) || [];
-  var date= slot_booked_latest[0][0].date;
-  var time= slot_booked_latest[0][0].time;
+  var date= slot_booked_latest[slot_booked_latest.length-1].date;
+  var time= slot_booked_latest[slot_booked_latest.length-1].time;
 
-  console.log("Latest booked slot;", slot_booked_latest.length, slot_booked_latest[0], slot_booked_latest[1]);
+  console.log("Latest booked slot;",  slot_booked_latest.length, date, time);
 
   let history = useHistory();
   function handleClick() {
     history.push("/bookslot");
   }
   return (
-    <Box className="description-of-meeting">
+    <Box className="description-of-meeting" borderRadius={4} boxShadow={10}>
       <Box id="thank-you"> Thank You! </Box>
       <Box className="slot-details">
         Your meeting is scheduled with Dr. Rakesh Poonia.
@@ -28,7 +28,7 @@ const ThankYou = () => {
       <Button
         id="book_again_button"
         color="secondary"
-        variant="outlined"
+        variant="contained"
         size="large"
         onClick={handleClick}
       >

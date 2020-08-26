@@ -16,8 +16,11 @@ const firebaseConfig = {
   appId: "1:332039631630:web:8a1908bf2a5fcd874a5d5f",
   measurementId: "G-42BX5779HH",
 };
+
 firebase.initializeApp(firebaseConfig);
-var db = firebase.firestore();
+const db = firebase.firestore();
+const auth = firebase.auth();
+const AuthContext = React.createContext(null);
 
 ReactDOM.render(
   <BrowserRouter>
@@ -27,4 +30,5 @@ ReactDOM.render(
 );
 
 serviceWorker.unregister();
-export default db;
+export default {db, auth};
+

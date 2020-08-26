@@ -12,12 +12,12 @@ function SelectDate() {
     history.push("/");
   }
   return (
-    <Box className=" date-selection-screen" borderRadius={4} boxShadow={2}>
-      <Box className="book-date" borderRadius={4} boxShadow={2}>
+    <Box className="date-selection-screen" borderRadius={4} boxShadow={2}>
+      <Box className="book-date" >
         <Button
           id="back-button"
           color="secondary"
-          variant="outlined"
+          variant="contained"
           onClick={handleClick}
         >
           {" "}
@@ -25,7 +25,7 @@ function SelectDate() {
         </Button>
         <DoctorDetails showButton={false}></DoctorDetails>
       </Box>
-      <Box className="book-slot">
+      <Box className="book-slot" borderLeft={1} borderColor={'#d3d3d3'}>
         <SlotSelection></SlotSelection>
       </Box>
     </Box>

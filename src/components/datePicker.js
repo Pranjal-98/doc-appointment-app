@@ -5,7 +5,8 @@ import { Box, Button } from "@material-ui/core";
 import { timeslots, weekendTimeslots } from "../const";
 import "./datePicker.css";
 import PatientDetailsForm from "./formValidation";
-import db from "../index";
+import * as firebase from "firebase";
+import moment from 'moment-timezone';
 
 function disableSunday(date) {
   return date.getDay() === 0;
@@ -27,9 +28,12 @@ function DateTimePicker() {
     var year = e.getFullYear();
     var month = e.getMonth() + 1;
     var day = e.getDate();
-    var date = day + "-" + month + "-" + year;
+    var date_previous = day + "-" + month + "-" + year;
+    var date = moment(e).format('YYYY-MM-DD');
+    console.log("DATE IS:***", date, date_previous);
 
     // var bookedSlots = JSON.parse(localStorage.getItem("bookedSlots"));
+    var db = firebase.firestore();
     var bookedSlotsInFS = [];
     db.collection("bookedSlots")
       .get()
@@ -37,6 +41,7 @@ function DateTimePicker() {
         const data = querySnapshot.docs.map((doc) => doc.data());
         bookedSlotsInFS = [...data];
         bookedSlotsInFS.map((item) => {
+          console.log("Date from firestore:", item.date, "and date", date, data);
           if (item.date === date) {
             if (bookedTime.includes(item.time)) {
               console.log("Already present");
@@ -139,7 +144,7 @@ function DateTimePicker() {
         </Box>
       </Box>
 
-      <Box className="text-select-date">
+      <Box className="text-select-date-2">
         <Box id="enter-details-text">Enter Details</Box>
         <PatientDetailsForm
           slotDate={selectedDate}

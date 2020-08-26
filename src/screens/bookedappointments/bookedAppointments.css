@@ -1,0 +1,32 @@
+#alert-dialog-title{
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bolder;
+    color: #ec0e58;
+}
+.doctor-appointments {
+    background-color:white;
+}
+#alert-dialog-description{
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #0388f5;
+}
+.fc-header-toolbar{
+    color: #e0346e;
+}
+.fc-col-header{
+    color: #0388f5;
+}
+.log-out-button{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 2%;
+    padding-right: 5%;
+}
+.App-intro{
+    width:100%;
+    overflow: scroll;
+    height: 100%;
+    background-color:white
+}
+
+

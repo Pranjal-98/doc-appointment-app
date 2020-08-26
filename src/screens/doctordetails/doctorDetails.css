@@ -5,6 +5,9 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  background-color:white;
+  width:50%;
+  box-shadow:5px 10px 10px black
 }
 #profile-info-name {
   font-weight: bolder;
