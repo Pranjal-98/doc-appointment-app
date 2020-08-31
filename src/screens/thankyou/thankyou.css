@@ -1,8 +1,13 @@
 #thank-you {
   font-size: 40px;
 }
-#book_again_button{
-  margin-top: 20px;
+#book_again_button {
+  margin-top: 30px;
+  width: 30%;
+}
+#goto-home_button {
+  margin-top: 10px;
+  width: 30%;
 }
 .slot-details {
   color: #f7407d;
@@ -19,4 +24,3 @@
   align-items: center;
   background-color: white;
 }
-

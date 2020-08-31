@@ -1,17 +1,12 @@
-
-.login-by-doctor{
-  /* display: flex; */
-  /* justify-content: center; */
-  /* flex-direction: column; */
-  padding-left:4%;
-  padding-right:4%;
-  display:flex;
-  align-items:center;
+.login-by-doctor {
+  padding-left: 4%;
+  padding-right: 4%;
+  display: flex;
+  align-items: center;
   text-align: left;
   width: 30%;
   height: 60vh;
-  background-color:white
-  
+  background-color: white;
 }
 
 .form-content {
@@ -20,30 +15,25 @@
   justify-content: center;
   flex-direction: column;
 }
-.form-element{
-  width: 60% ;
+.form-element {
+  width: 60%;
 }
 
 .form-heading {
-  /* margin-top: 5%; */
   margin-bottom: 7%;
   font-weight: bolder;
   font-size: 20px;
   color: #3096e9;
 }
 
-#button-container{
-  /* display: flex;
-  justify-content: center; */
-  width:100%
-}
-#submit-button{
+#button-container {
   width: 100%;
-  /* margin-bottom: 5%; */
 }
-#error-message{
+#submit-button {
+  width: 100%;
+}
+#error-message {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   margin-bottom: 2%;
   color: #e61158;
 }
-

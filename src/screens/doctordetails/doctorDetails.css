@@ -5,9 +5,9 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color:white;
-  width:50%;
-  box-shadow:5px 10px 10px black
+  background-color: white;
+  width: 50%;
+  box-shadow: 5px 10px 10px black;
 }
 #profile-info-name {
   font-weight: bolder;
@@ -19,7 +19,7 @@
   color: #3096e9;
   margin: 1%;
 }
-.button-container{
+.button-container {
   margin: 2%;
 }
 #doctor-contact {

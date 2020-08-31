@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Button, Box } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import "./doctorDetails.css";
@@ -13,7 +13,11 @@ function DoctorDetails({ showButton }) {
     history.push("/login-as-doctor");
   }
   return (
-    <Box className="doctor-details" borderRadius={4} boxShadow={showButton ? 10 : 0} >
+    <Box
+      className="doctor-details"
+      borderRadius={4}
+      boxShadow={showButton ? 10 : 0}
+    >
       <Box className="doctor_img">
         <img
           src={require("/Users/pranjal/Sites/Projects/doctors-appointment/src/Assets/doctor.jpg")}
@@ -31,7 +35,7 @@ function DoctorDetails({ showButton }) {
         <Button
           className="button-container"
           color="secondary"
-          style={{margin: "1%", width:'30%'}}
+          style={{ margin: "1%", width: "30%" }}
           variant="contained"
           size="medium"
           onClick={handleClickByDoctor}
@@ -45,8 +49,7 @@ function DoctorDetails({ showButton }) {
         <Button
           className="button-container"
           color="secondary"
-          style={{margin: "1%", width:'30%'}}
-          
+          style={{ margin: "1%", width: "30%" }}
           variant="contained"
           size="medium"
           onClick={handleClick}

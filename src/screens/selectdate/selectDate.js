@@ -13,7 +13,7 @@ function SelectDate() {
   }
   return (
     <Box className="date-selection-screen" borderRadius={4} boxShadow={2}>
-      <Box className="book-date" >
+      <Box className="book-date">
         <Button
           id="back-button"
           color="secondary"
@@ -25,7 +25,7 @@ function SelectDate() {
         </Button>
         <DoctorDetails showButton={false}></DoctorDetails>
       </Box>
-      <Box className="book-slot" borderLeft={1} borderColor={'#d3d3d3'}>
+      <Box className="book-slot" borderLeft={1} borderColor={"#d3d3d3"}>
         <SlotSelection></SlotSelection>
       </Box>
     </Box>

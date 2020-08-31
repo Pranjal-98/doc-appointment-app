@@ -1,7 +1,6 @@
 .date-time-booking {
   width: 100%;
   display: flex;
-  /* justify-content: left; */
   margin: 2%;
 }
 
@@ -17,7 +16,6 @@
   justify-content: center;
   align-items: center;
   width: 70%;
-  
 }
 
 .text-select-date-2 {
@@ -32,8 +30,7 @@
   justify-content: center;
   align-items: center;
   width: 70%;
-  margin-top:5%
-  
+  margin-top: 5%;
 }
 
 .patient-details-and-slot-booking {
@@ -50,12 +47,9 @@
   width: 100%;
   display: flex;
   justify-content: start;
-  /* margin: 2%; */
-  margin-bottom:4%
-  /* padding-left: 10%; */
+  margin-bottom: 4%;
 }
 .slot-buttons-container {
-  /* width: 40%; */
   display: flex;
   flex-direction: column;
   margin-left: 10%;
@@ -67,4 +61,3 @@
   flex-direction: column;
   background-color: #fff;
 }
-

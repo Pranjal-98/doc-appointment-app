@@ -20,7 +20,6 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 const auth = firebase.auth();
-const AuthContext = React.createContext(null);
 
 ReactDOM.render(
   <BrowserRouter>
@@ -30,5 +29,4 @@ ReactDOM.render(
 );
 
 serviceWorker.unregister();
-export default {db, auth};
-
+export default { db, auth };

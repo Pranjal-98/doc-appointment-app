@@ -4,16 +4,19 @@ import { useHistory } from "react-router-dom";
 import "./thankyou.css";
 
 const ThankYou = () => {
+  var slot_booked_latest =
+    JSON.parse(localStorage.getItem("slot_booked")) || [];
+  var date = slot_booked_latest[slot_booked_latest.length - 1].date;
+  var time = slot_booked_latest[slot_booked_latest.length - 1].time;
 
-  var slot_booked_latest = JSON.parse(localStorage.getItem("slot_booked")) || [];
-  var date= slot_booked_latest[slot_booked_latest.length-1].date;
-  var time= slot_booked_latest[slot_booked_latest.length-1].time;
-
-  console.log("Latest booked slot;",  slot_booked_latest.length, date, time);
+  console.log("Latest booked slot;", slot_booked_latest.length, date, time);
 
   let history = useHistory();
   function handleClick() {
     history.push("/bookslot");
+  }
+  function handleHomeClick() {
+    history.push("/");
   }
   return (
     <Box className="description-of-meeting" borderRadius={4} boxShadow={10}>
@@ -34,6 +37,16 @@ const ThankYou = () => {
       >
         {" "}
         Book Again
+      </Button>
+      <Button
+        id="goto-home_button"
+        color="secondary"
+        variant="contained"
+        size="large"
+        onClick={handleHomeClick}
+      >
+        {" "}
+        Go to home
       </Button>
     </Box>
   );

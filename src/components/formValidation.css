@@ -2,9 +2,7 @@
   width: 80%;
 }
 #button-container {
-  /* display: flex; */
-  /* justify-content: left; */
-  width:100%
+  width: 100%;
 }
 #submit-button {
   width: 100%;
